@@ -8,6 +8,31 @@ class HewanRepository {
   final String baseUrl = "https://ternak-be-production.up.railway.app/api/v1";
   final StorageProvider _storageProvider = StorageProvider();
 
+  Future<HewanModel> getHewanById(int id) async {
+    try {
+      final token = await _storageProvider.getToken();
+      final response = await http.get(
+        Uri.parse('$baseUrl/hewan/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      final data = jsonDecode(response.body);
+      developer.log("Response Get Hewan By Id: ${response.body}", name: "API");
+
+      if (response.statusCode == 200) {
+        return HewanModel.fromJson(data['data']);
+      } else {
+        throw Exception(data['message'] ?? "Gagal Mendapatkan Data Hewan");
+      }
+    } catch (e) {
+      developer.log("Error Get Hewan By Id: $e", name: "API");
+      rethrow;
+    }
+  }
+
   Future<List<HewanModel>> getAllHewan() async {
     try {
       final token = await _storageProvider.getToken();
