@@ -20,6 +20,15 @@ final class HewanLoaded extends HewanState {
   List<Object> get props => [hewanList];
 }
 
+final class HewanDetailLoaded extends HewanState {
+  final HewanModel hewan;
+
+  const HewanDetailLoaded(this.hewan);
+
+  @override
+  List<Object> get props => [hewan];
+}
+
 final class HewanCreatedSuccess extends HewanState {}
 
 final class HewanError extends HewanState {
