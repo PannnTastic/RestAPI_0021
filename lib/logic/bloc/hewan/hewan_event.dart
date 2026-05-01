@@ -11,6 +11,15 @@ class FetchHewan extends HewanEvent {
   const FetchHewan();
 }
 
+class FetchHewanById extends HewanEvent {
+  final int id;
+
+  const FetchHewanById({required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+
 class CreateHewan extends HewanEvent {
   final Map<String, dynamic> data;
 
