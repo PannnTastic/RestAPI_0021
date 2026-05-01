@@ -23,6 +23,18 @@ class HewanBloc extends Bloc<HewanEvent, HewanState> {
       }
     });
 
+    on<FetchHewanById>((event, emit) async {
+      emit(HewanLoading());
+      try {
+        final hewan = await repository.getHewanById(event.id);
+        emit(HewanDetailLoaded(hewan));
+        developer.log('✓ FetchHewanById: id=${event.id} dimuat', name: 'HewanBloc');
+      } catch (e) {
+        emit(HewanError(e.toString()));
+        developer.log('✗ FetchHewanById Error: $e', name: 'HewanBloc');
+      }
+    });
+
     on<CreateHewan>((event, emit) async {
       emit(HewanLoading());
       try {
