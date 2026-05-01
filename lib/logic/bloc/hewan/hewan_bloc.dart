@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../data/repositories/hewan_repository.dart';
-import '../../data/models/hewan_model.dart';
+import '../../../data/repositories/hewan_repository.dart';
+import '../../../data/models/hewan_model.dart';
 import 'dart:developer' as developer;
 
 part 'hewan_event.dart';
